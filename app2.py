@@ -3,7 +3,7 @@ import requests
 import os
 
 app = Flask(__name__)
-api_key = os.getenv("OPENWEATHER_API_KEY", "3fefe0e8b49a4267c906b1573d5fce18")  # Use an environment variable for the API key
+api_key = os.getenv("OPENWEATHER_API_KEY", "3fefe0e8b49a4267c906b1573d5fce18")  
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
