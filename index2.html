@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2193b0, #6dd5ed);
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .weather-card {
+            padding: 20px;
+            border-radius: 8px;
+            background: linear-gradient(to bottom, #ffffff, #f1f1f1);
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .weather-icon {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="mb-4">Weather Dashboard</h1>
+        <form method="POST" action="/">
+            <div class="input-group mb-3">
+                <input type="text" name="city" class="form-control" placeholder="Enter city name" required>
+                <button class="btn btn-primary" type="submit">Get Weather</button>
+                <button class="btn btn-secondary" type="reset">Clear</button>
+            </div>
+        </form>
+        {% if error %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+        {% endif %}
+
+        {% if weather %}
+        <div class="weather-card text-center">
+            <h2>Weather in {{ weather.city }}, {{ weather.country }}</h2>
+            <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="{{ weather.condition }}" class="weather-icon mb-3">
+            <p><strong>Temperature:</strong> {{ weather.temp }}°C</p>
+            <p><strong>Feels like:</strong> {{ weather.feel_like }}°C</p>
+            <p><strong>Condition:</strong> {{ weather.condition }}</p>
+            <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
+            <p><strong>Wind speed:</strong> {{ weather.wind_speed }} m/s</p>
+            <p><strong>Pressure:</strong> {{ weather.pressure }} hPa</p>
+            <p><strong>Visibility:</strong> {{ weather.visibility }} m</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
